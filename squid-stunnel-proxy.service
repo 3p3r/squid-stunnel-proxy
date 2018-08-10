@@ -1,0 +1,38 @@
+# How To Use This File:
+# On your Ubuntu / Debian box (with docker-compose installed in /usr/local/bin):
+# 
+# $ sudo nano /etc/squid-stunnel-proxy/docker-compose.yml
+# $ sudo nano /etc/systemd/system/squid-stunnel-proxy.service
+# 
+# copy and paste this file and docker-compose.yml into above.
+# you can then start up squid-stunnel-proxy by typing:
+# 
+# $ sudo systemctl start squid-stunnel-proxy
+# 
+# Check to make sure the service was able to start successfully:
+# 
+# $ sudo systemctl status squid-stunnel-proxy
+# 
+# If the service is marked as "active (running)" and no errors are present in
+# the log, squid-stunnel-proxy is up and running.
+# If you run into problems, you can check the logs by typing:
+# 
+# $ sudo journalctl -u squid-stunnel-proxy -f -n 100
+# 
+# If everything is ok, enable squid-stunnel-proxy to start at boot by typing:
+# 
+# $ sudo systemctl enable squid-stunnel-proxy
+# 
+# The service will start up after the Docker service is available.
+
+[Unit]
+Description=squid-stunnel-proxy service
+After=docker.service
+
+[Service]
+Restart=always
+ExecStart=/usr/local/bin/docker-compose -f /etc/squid-stunnel-proxy/docker-compose.yml up
+ExecStop=/usr/local/bin/docker-compose -f /etc/squid-stunnel-proxy/docker-compose.yml stop
+
+[Install]
+WantedBy=multi-user.target

@@ -1,5 +1,8 @@
 FROM ubuntu
 
+# https://github.com/willfarrell/docker-autoheal
+LABEL autoheal=true
+
 ADD build.sh daemon.sh stunnel-server.conf stunnel-client.conf /
 RUN bash build.sh && rm build.sh
 

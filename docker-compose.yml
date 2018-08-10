@@ -1,0 +1,13 @@
+version: '3'
+services:
+  squid-stunnel-proxy:
+    image: sepehrl/squid-stunnel-proxy
+    network_mode: host
+    restart: always
+  autoheal:
+    image: willfarrell/autoheal
+    restart: always
+    environment:
+      - AUTOHEAL_CONTAINER_LABEL=all
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
