@@ -3,7 +3,7 @@ set -e
 set -x
 
 apt-get update -qq
-apt-get install -y --no-install-recommends dumb-init stunnel4 squid curl
+apt-get install -y --no-install-recommends dumb-init stunnel4 squid curl ca-certificates
 
 # generate certifacte used stunnel (can override from outside with mounts)
 openssl genrsa -out key.pem 2048
