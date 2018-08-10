@@ -1,4 +1,4 @@
-# squid-stunnel-proxy2
+# squid-stunnel-proxy
 
 SSL Tunnel Using STunnel, Squid Proxy Server, and Docker.
 
