@@ -12,6 +12,12 @@ $ docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{en
 172.17.0.2
 ```
 
+Server side (running across restarts):
+
+```bash
+$ docker run --name stunnel-server --detach=true --restart=on-failure:10 --net=host sepehrl/squid-stunnel-proxy
+```
+
 Client side (sample configuration):
 
 ```bash
